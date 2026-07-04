@@ -1,0 +1,16 @@
+# Never commit real certs, keys, or secrets
+*.key
+*.crt
+*.csr
+*.ext
+harbor.yml
+.env
+
+# Harbor installer artifacts (large, downloaded — not source)
+harbor-offline-installer-*.tgz
+harbor/
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+*.swp

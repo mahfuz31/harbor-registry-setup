@@ -1,0 +1,40 @@
+# harbor.yml — example configuration
+# Copy Harbor's own harbor.yml.tmpl (from the offline installer bundle) and
+# apply these values. This file is a reference for the fields that matter
+# most for this setup — it is NOT a complete harbor.yml on its own.
+#
+# Replace every placeholder below with your own values before use.
+# NEVER commit a real harbor.yml (with real passwords) to a public repo.
+
+hostname: registry.example.com
+
+http:
+  port: 80
+
+https:
+  port: 443
+  # Paths to the cert/key generated in docs/setup-guide.md Step 2
+  # (or via scripts/generate-cert.sh)
+  certificate: /certs/registry.crt
+  private_key: /certs/registry.key
+
+# CHANGE THIS before running ./install.sh — this is only used on first install.
+# Changing it later requires updating it through the Harbor UI/API, not here.
+harbor_admin_password: <CHANGE_ME>
+
+data_volume: /data
+
+# --- Recommended additions not in the default template ---
+#
+# Add a restart policy to each service block further down in the full
+# harbor.yml.tmpl-derived docker-compose.yml if you want the stack to
+# self-heal after a crash or host reboot:
+#
+#   services:
+#     core:
+#       restart: always
+#     proxy:
+#       restart: always
+#     ... (repeat for each service)
+#
+# See docs/postmortem-stack-down.md for why this matters.
